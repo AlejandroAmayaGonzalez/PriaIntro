@@ -2,26 +2,38 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Fusion;
 using Unity.VisualScripting;
+using Unity.Mathematics;
 
 public class PlayerMovement : NetworkBehaviour {
     private Vector3 _velocity;
+
     private bool _jumpPressed;
+    private bool _shoot;
 
     private CharacterController _controller;
+    private BulletSpawner _spaBullet;
 
+    // Camera
     public Camera cameraP;
     public float PlayerSpeed = 2f;
 
+    // Jump
     public float JumpForce = 10f;
     public float GravityValue = -9.81f;
 
     private void Awake(){
         _controller = GetComponent<CharacterController>();
+        _spaBullet = FindAnyObjectByType<BulletSpawner>();
     }
 
     private void Update(){
         if (Keyboard.current.spaceKey.wasPressedThisFrame){
             _jumpPressed = true;
+        }
+
+        // Check if the player pressed left click to shoot
+        if (Mouse.current.leftButton.wasPressedThisFrame){
+            _shoot = true;
         }
     }
 
@@ -30,6 +42,15 @@ public class PlayerMovement : NetworkBehaviour {
 
         cameraP = Camera.main;
         cameraP.GetComponent<FirstPersonCamera>().Target = transform;
+    }
+
+    public void Shoot() { 
+        if (_spaBullet == null)
+    {
+        Debug.LogError("No se encontró SpawnBullet en la escena");
+        return;
+    }
+        _spaBullet.SpawnBullet(cameraP); 
     }
 
     public override void FixedUpdateNetwork(){
@@ -57,5 +78,10 @@ public class PlayerMovement : NetworkBehaviour {
         }*/
 
         _jumpPressed = false;
+
+        if (_shoot){ 
+            Shoot(); 
+            _shoot = false;
+        }
     }
 }
