@@ -11,10 +11,12 @@ public class PlayerMovement : NetworkBehaviour {
     private bool _shoot;
 
     private CharacterController _controller;
-    private BulletSpawner _spaBullet;
+
+    // Bullet
+    public GameObject BulletPrefab;
 
     // Camera
-    public Camera cameraP;
+    private Camera cameraP;
     public float PlayerSpeed = 2f;
 
     // Jump
@@ -23,7 +25,6 @@ public class PlayerMovement : NetworkBehaviour {
 
     private void Awake(){
         _controller = GetComponent<CharacterController>();
-        _spaBullet = FindAnyObjectByType<BulletSpawner>();
     }
 
     private void Update(){
@@ -44,13 +45,12 @@ public class PlayerMovement : NetworkBehaviour {
         cameraP.GetComponent<FirstPersonCamera>().Target = transform;
     }
 
-    public void Shoot() { 
-        if (_spaBullet == null)
-    {
-        Debug.LogError("No se encontró SpawnBullet en la escena");
-        return;
-    }
-        _spaBullet.SpawnBullet(cameraP); 
+    public void Shoot(Camera cam){
+        Runner.Spawn(
+            BulletPrefab,
+            cameraP.transform.position + cameraP.transform.forward,
+            Quaternion.LookRotation(cam.transform.forward) 
+        );
     }
 
     public override void FixedUpdateNetwork(){
@@ -80,7 +80,7 @@ public class PlayerMovement : NetworkBehaviour {
         _jumpPressed = false;
 
         if (_shoot){ 
-            Shoot(); 
+            Shoot(cameraP); 
             _shoot = false;
         }
     }

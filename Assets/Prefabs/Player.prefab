@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e4374d1b64cae46b37255e8dc13d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  cameraP: {fileID: 0}
+  BulletPrefab: {fileID: 367225144701300051, guid: f495d6e070f80f447a9fd2c27cf61a29, type: 3}
   PlayerSpeed: 2
   JumpForce: 10
   GravityValue: -9.81
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a58244e13de4a441ab562f88d6d990e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
-  BulletPrefab: {fileID: 7950960922168516785, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+  speed: 1
 --- !u!1 &7434461160726794276
 GameObject:
   m_ObjectHideFlags: 0
