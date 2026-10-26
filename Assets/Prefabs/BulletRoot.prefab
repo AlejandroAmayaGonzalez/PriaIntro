@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7384409145491684152}
   - component: {fileID: 2401630739543961692}
-  - component: {fileID: -6101402297994053212}
+  - component: {fileID: 5598590321363218382}
+  - component: {fileID: 8297191583270957961}
+  - component: {fileID: -2655762713670441113}
   m_Layer: 0
   m_Name: BulletRoot
   m_TagString: Untagged
@@ -49,12 +51,78 @@ MonoBehaviour:
   SortKey: 593122603
   SendPriority: 1
   EnableInterpolation: 1
-  Flags: 262146
-  NestedObjects: []
+  Flags: 262402
+  NestedObjects:
+  - {fileID: 7481348357496551681}
   NetworkedBehaviours:
-  - {fileID: -6101402297994053212}
+  - {fileID: 5598590321363218382}
+  - {fileID: -2655762713670441113}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &-6101402297994053212
+--- !u!114 &5598590321363218382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367225144701300051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  ConfigFlags: 0
+  PhysicsSettings:
+    ForecastEnabled: 1
+    DebugPhysics: 0
+    GravityForecast: 2
+    MaxExtrapolationTime: 0.15
+    MinLinearDetectedError: 0.02
+    MinAngularDetectedError: 3
+    DeadzoneVelocityMode: 0
+    MaxLinearError: 0
+    MaxAngularError: 0
+    LowCorrectionProgressThreshold: 0.015
+    HighErrorSimilarityThreshold: 1
+    MaxErrorTotalTime: 0.5
+    MaxRemoteSleepIgnoreTime: 0.5
+    ErrorCorrectionType: 0
+    LinearVelCorrectionMul: 1
+    AngularVelCorrectionMul: 1
+    PositionCorrectionLerp: 0.15
+    RotationCorrectionLerp: 0.15
+    Spring: 75
+    Damper: 2
+    MinImpactfulCollisionAlignment: 0.3
+    ImpactStartCorrectionTime: 0.1
+    ImpactCorrectionTimeComplete: 0.3
+--- !u!136 &8297191583270957961
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367225144701300051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2655762713670441113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,7 +133,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a58244e13de4a441ab562f88d6d990e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletMovement
+  m_EditorClassIdentifier: Assembly-CSharp::BulletManager
   speed: 10
 --- !u!1001 &371793750285126492
 PrefabInstance:
@@ -75,6 +143,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7384409145491684152}
     m_Modifications:
+    - target: {fileID: -2090806283145039267, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+      propertyPath: Flags
+      value: 262402
+      objectReference: {fileID: 0}
+    - target: {fileID: -2090806283145039267, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+      propertyPath: SortKey
+      value: 2457792749
+      objectReference: {fileID: 0}
+    - target: {fileID: -2090806283145039267, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+      propertyPath: NetworkedBehaviours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2090806283145039267, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+      propertyPath: 'NetworkedBehaviours.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2130034790568007008}
     - target: {fileID: 3361131779471173714, guid: 3c190a431e77da048a11be3557a57199, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -128,8 +212,30 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+--- !u!114 &2130034790568007008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1776537189869624892, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+  m_PrefabInstance: {fileID: 371793750285126492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkTransform
 --- !u!4 &3138379992544797454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361131779471173714, guid: 3c190a431e77da048a11be3557a57199, type: 3}
   m_PrefabInstance: {fileID: 371793750285126492}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7481348357496551681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2090806283145039267, guid: 3c190a431e77da048a11be3557a57199, type: 3}
+  m_PrefabInstance: {fileID: 371793750285126492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject

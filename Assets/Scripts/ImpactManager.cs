@@ -2,26 +2,38 @@ using UnityEngine;
 using Fusion;
 using UnityEngine.InputSystem;
 
-public class impactManager : NetworkBehaviour {
+public class ImpactManager : NetworkBehaviour {
 
     public MeshRenderer meshRenderer;
-    
-    [Networked, OnChangedRender(nameof(ImpactChangeColor))] Color ImpactColor { get; set; }
 
-    // PLayer health
-    float health = 50f;
+    [Networked, OnChangedRender(nameof(UpdateColor))]
+    public Color ImpactColor { get; set; }
 
-    void Update(){
-        if (HasStateAuthority == false) { return; }
+    [Networked]
+    public float Health { get; set; }
 
-        if (Keyboard.current.iKey.wasPressedThisFrame) {
-            // Simulate an impact
-            health -= Random.Range(2f, 5f);
-            // Change green value
-            ImpactColor = new Color(1-(health/100),health/50,0,1f);
+    public override void Spawned(){
+        if (Object.HasStateAuthority){
+            Health = 100f;
+            ImpactColor = Color.green;
         }
+
+        UpdateColor();
     }
 
-    // Change the color of the player based on health
-    private void ImpactChangeColor() { meshRenderer.material.color = ImpactColor; }
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void RPC_ReceiveDamage(int damage){
+        Health = Mathf.Max(0f, Health - damage);
+
+        ImpactColor = new Color(
+            1f - Health / 100f,
+            Health / 100f,
+            0f,
+            1f
+        );
+    }
+
+    private void UpdateColor(){
+        if (meshRenderer != null) meshRenderer.material.color = ImpactColor;
+    }
 }

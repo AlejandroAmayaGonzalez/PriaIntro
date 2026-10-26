@@ -45,11 +45,12 @@ public class PlayerMovement : NetworkBehaviour {
         cameraP.GetComponent<FirstPersonCamera>().Target = transform;
     }
 
-    public void Shoot(Camera cam){
+    public void Shoot(){
         Runner.Spawn(
             BulletPrefab,
             cameraP.transform.position + cameraP.transform.forward,
-            Quaternion.LookRotation(cam.transform.forward) 
+            Quaternion.LookRotation(cameraP.transform.forward),
+            Object.InputAuthority
         );
     }
 
@@ -80,7 +81,7 @@ public class PlayerMovement : NetworkBehaviour {
         _jumpPressed = false;
 
         if (_shoot){ 
-            Shoot(cameraP); 
+            Shoot(); 
             _shoot = false;
         }
     }

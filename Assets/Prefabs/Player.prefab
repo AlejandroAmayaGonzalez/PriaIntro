@@ -359,10 +359,9 @@ GameObject:
   - component: {fileID: 4997251076061425090}
   - component: {fileID: -7181656953492555182}
   - component: {fileID: -4427689276146132372}
-  - component: {fileID: 8968569152581109249}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,7 +488,6 @@ MonoBehaviour:
   - {fileID: 4997251076061425090}
   - {fileID: -7181656953492555182}
   - {fileID: -4427689276146132372}
-  - {fileID: 8968569152581109249}
   ForceRemoteRenderTimeframe: 0
 --- !u!143 &8840346607548255186
 CharacterController:
@@ -600,6 +598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::impactManager
   meshRenderer: {fileID: 4740658990649347960}
+  _ImpactColor: {r: 0, g: 0, b: 0, a: 0}
+  _Health: 0
 --- !u!114 &-4427689276146132372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,19 +612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5b7152d624fe4488b7bb393810b822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HelloRPC
---- !u!114 &8968569152581109249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4618672233141302962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a58244e13de4a441ab562f88d6d990e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BulletSpawner
-  speed: 1
 --- !u!1 &7434461160726794276
 GameObject:
   m_ObjectHideFlags: 0
